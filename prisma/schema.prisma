@@ -7,8 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-<<<<<<< HEAD
 model comprador {
+
   id_comprador   Int           @id @default(autoincrement())
   direccion_comp String
   ciudad_comp    String
@@ -23,7 +23,7 @@ model producto {
   nombre_prod      String?        
   descripcion_prod String        
   categoria        String
-  precio_prod      Float?
+  precio_prod      Int?
   ID_Artesano      Int
   artesano         artesano      @relation(fields: [ID_Artesano], references: [id_artesano])
   ID_Categoria     Int
@@ -33,7 +33,7 @@ model producto {
 
 model transaccion {
   id_transaccion Int       @id @default(autoincrement())
-  cantidad_trans Float?
+  cantidad_trans Int?
   fecha_trans    DateTime
   ID_Comprador   Int
   Comprador      comprador @relation(fields: [ID_Comprador], references: [id_comprador])
@@ -73,28 +73,3 @@ model carrito {
   Comprador     comprador @relation(fields: [ID_Comprador], references: [id_comprador])
     ID_Comprador  Int
 }
-=======
-model User {
-  User_Id    Int     @id @default(autoincrement())
-  Artisan_Id Int
-  name  String?
-  last name  String
-  email String  @unique
-  artisan Artisan []
-}
-
-model Artisan {
-  Artisan_Id        Int     @id @default(autoincrement())
-  User_Id    Usuario @relation(fields: [Id_Usuario], references: [id])
-  Description    String @db.VarChar    
-  Location  String
-  Telephone  number
-  User_Id Int
-}
-
-model Category {
-  Category_Id  Int @id @default(autoincrement())
-  Category_Name  String
-  Description String  @db.VarChar
-}
->>>>>>> a7d123f4cba401682967a62b410d0dd5a4309ce3
