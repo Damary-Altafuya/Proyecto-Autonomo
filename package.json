@@ -21,7 +21,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@prisma/client": "^5.4.2",
+=======
+    "@prisma/client": "^5.3.1",
+>>>>>>> 8b8c99fda9c7f14dcbb71aba6e3a05b40f6bd6d6
     "dotenv": "^16.3.1",
     "env-var": "^7.4.1",
     "express": "^4.18.2"
