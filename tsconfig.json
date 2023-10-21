@@ -106,8 +106,4 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8b8c99fda9c7f14dcbb71aba6e3a05b40f6bd6d6
