@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model comprador {
+  id_comprador   Int           @id @default(autoincrement())
+  direccion_comp String
+  ciudad_comp    String
+  telefono_comp  String
+  nombre_comp    String?
+  Carrito        carrito[]
+  Transaccion    transaccion[]
+}
+
+model producto {
+  id_producto      Int           @id @default(autoincrement())
+  nombre_prod      String?
+  descripcion_prod String
+  categoria        String
+  precio_prod      Int?
+  ID_Artesano      Int
+  ID_Categoria     Int
+  artesano         artesano      @relation(fields: [ID_Artesano], references: [id_artesano])
+  UserCategoria    categoria     @relation(fields: [ID_Categoria], references: [id_categoria])
+  Transaccion      transaccion[]
+}
+
+model transaccion {
+  id_transaccion Int       @id @default(autoincrement())
+  cantidad_trans Int?
+  fecha_trans    DateTime
+  ID_Comprador   Int
+  ID_Producto    Int
+  Comprador      comprador @relation(fields: [ID_Comprador], references: [id_comprador])
+  producto       producto  @relation(fields: [ID_Producto], references: [id_producto])
+}
+
+model usuario {
+  id_usuario   Int        @id @default(autoincrement())
+  nombre_usu   String?
+  apellido_usu String
+  email_usu    String     @unique
+  password_usu String?
+  Artesano     artesano[] @relation("artesanoTousuario")
+}
+
+model artesano {
+  id_artesano     Int        @id @default(autoincrement())
+  descripcion_art String
+  ubicacion_art   String
+  telefono_art    String
+  nombre_art      String?
+  Productos       producto[]
+  Usuario         usuario[]  @relation("artesanoTousuario")
+}
+
+model categoria {
+  id_categoria    Int        @id @default(autoincrement())
+  nombre_cat      String?
+  descripcion_cat String
+  Productos       producto[]
+}
+
+model carrito {
+  id_carrito    Int       @id @default(autoincrement())
+  fecha_carrito DateTime
+  ID_Comprador  Int
+  Comprador     comprador @relation(fields: [ID_Comprador], references: [id_comprador])
+}
